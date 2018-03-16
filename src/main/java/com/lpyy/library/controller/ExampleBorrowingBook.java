@@ -15,12 +15,12 @@ import java.io.IOException;
 /**
  * Created by Faithful-Mind on 2018/3/8.
  */
-@WebServlet(name = "GetExampleBook",urlPatterns = {"/GetExampleBook.do"})
+@WebServlet(name = "GetExampleBook", urlPatterns = {"/GetExampleBook.do"}, loadOnStartup = 1)
 public class ExampleBorrowingBook extends HttpServlet {
-    ServletContext sCtx;
+    private ServletContext sCtx;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         this.sCtx = getServletContext();
         sCtx.setAttribute("hfPython", new Book("Head First Python", "O'Reilly", "9781449382674", Category.T, 0));
         sCtx.setAttribute("algs4", new Book("算法（英文版·第4版）", "人民邮电出版社", "9787115271464", Category.T, 1));

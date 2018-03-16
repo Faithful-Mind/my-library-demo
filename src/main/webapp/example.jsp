@@ -19,9 +19,9 @@
   <form method="get" action="GetExampleBook.do">
     Select the Book you would like to borrow:
     <select name="reqBook">
-      <option value="hfPython">Head First Python</option>
-      <option value="algs4">算法（英文版·第4版）</option>
-      <option value="jzb">颈椎病康复指南</option>
+      <option value="hfPython">${hfPython.name}</option>
+      <option value="algs4">${algs4.name}</option>
+      <option value="jzb">${jzb.name}</option>
     </select>
     <input type="submit">
   </form>
