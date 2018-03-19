@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: lpyy1
@@ -19,9 +20,9 @@
   <form method="get" action="GetExampleBook.do">
     Select the Book you would like to borrow:
     <select name="reqBook">
-      <option value="hfPython">${hfPython.name}</option>
-      <option value="algs4">${algs4.name}</option>
-      <option value="jzb">${jzb.name}</option>
+      <c:forEach var="bookEntry" items="${booksLibrary}">
+        <option value="${bookEntry.key}">${bookEntry.value.name}</option>
+      </c:forEach>
     </select>
     <input type="submit">
   </form>
