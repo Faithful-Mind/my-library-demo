@@ -13,6 +13,6 @@
 <body>
   <h1>Result Page</h1>
   <hr />
-  <p>Your selected book is: ${actualBook.name}</p>
+  <p>Your selected book is: ${booksLibrary[param.reqBook].name}</p>
 </body>
 </html>

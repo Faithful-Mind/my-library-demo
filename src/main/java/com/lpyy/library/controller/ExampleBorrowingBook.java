@@ -27,10 +27,6 @@ public class ExampleBorrowingBook extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HashMap<String, Book> booksLibrary = (HashMap<String, Book>) sCtx.getAttribute("booksLibrary");
-        Book actualBook = booksLibrary.get(req.getParameter("reqBook"));
-        req.setAttribute("actualBook", actualBook);
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("result.jsp");
         dispatcher.forward(req, resp);
     }
