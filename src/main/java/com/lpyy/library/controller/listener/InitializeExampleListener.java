@@ -1,28 +1,33 @@
 package com.lpyy.library.controller.listener;
 
 import com.lpyy.library.model.Book;
-import com.lpyy.library.model.Category;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.util.HashMap;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+import java.util.Map;
 
 /**
  * Created by Faithful-Mind on 2018/3/17.
  */
 @WebListener
-public class InitializeExampleListener implements ServletContextListener {
+@Component
+public class InitializeExampleListener implements ServletContextListener{
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ServletContext sCtx = sce.getServletContext();
-        HashMap<String, Book> booksMap = new HashMap<>();
-        booksMap.put("hfPython", new Book("Head First Python", "O'Reilly", "9781449382674", Category.T, 0));
-        booksMap.put("algs4", new Book("算法（英文版·第4版）", "人民邮电出版社", "9787115271464", Category.T, 1));
-        booksMap.put("jzb", new Book("颈椎病康复指南", "湖北科学技术出版社", "9787535249340", Category.R, 2));
-        sCtx.setAttribute("booksLibrary", booksMap);
+        ApplicationContext appCtx = new AnnotationConfigApplicationContext(com.lpyy.library.ExampleConfig.class);
+        Map<String, Book> booksMap = (Map<String, Book>) appCtx.getBean("booksMap");
+
+        if (sce.getServletContext().getAttribute("booksMap") == null)
+            sce.getServletContext().setAttribute("booksMap", booksMap);
+
     }
 
     @Override

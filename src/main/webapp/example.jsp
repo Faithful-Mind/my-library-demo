@@ -20,7 +20,7 @@
   <form method="get" action="GetExampleBook.do">
     Select the Book you would like to borrow:
     <select name="reqBook">
-      <c:forEach var="bookEntry" items="${booksLibrary}">
+      <c:forEach var="bookEntry" items="${booksMap}">
         <option value="${bookEntry.key}">${bookEntry.value.name}</option>
       </c:forEach>
     </select>

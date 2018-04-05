@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+apply plugin: 'war'
+apply from: 'https://raw.github.com/gretty-gradle-plugin/gretty/master/pluginScripts/gretty.plugin'
+
+group = 'com.lpyy.library'
+version = '0.1.0-SNAPSHOT'
+
+description = """My-Library"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenLocal()
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    jcenter()
+    maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+ext {
+    springVersion = '4.3.14.RELEASE'
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version:'3.8.1'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.0.1'
+
+    compile 'javax.servlet:jstl:1.2'
+    compile "org.springframework:spring-core:${springVersion}"
+    compile "org.springframework:spring-context:${springVersion}"
+    compile "org.springframework:spring-jdbc:${springVersion}"
+    compile "org.springframework:spring-web:${springVersion}"
+}
