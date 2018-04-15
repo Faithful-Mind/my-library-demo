@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <!-- <title>$Title$</title> -->
+  <title>My Library</title>
+  <link rel="stylesheet" href="../../style1.css" />
+</head>
+<body>
+  <h1>Welcome to My Library</h1>
+  <hr />
+
+  <form method="get" action="GetExampleBook.do">
+    Select the Book you would like to borrow:
+    <select name="reqBook">
+      <th:block th:each="bookEntry : ${booksMap}">
+        <option th:value="${bookEntry.key}" th:text="${bookEntry.value.name}">None Book</option>
+      </th:block>
+    </select>
+    <input type="submit" />
+  </form>
+
+  <footer class="right">by Faithful-Mind</footer>
+</body>
+</html>

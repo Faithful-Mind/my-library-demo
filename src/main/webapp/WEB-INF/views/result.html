@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Result</title>
+</head>
+<body>
+  <h1>Result Page</h1>
+  <hr />
+  <p th:with="reqBook=${param.reqBook[0]}">
+    <div style="display: none" id="for-debugging">
+      <table>
+        <tr th:each="var : ${#vars}">
+          <td th:text="${var.key}"></td>
+          <td th:text="${var.value}"></td>
+        </tr>
+      </table>
+    </div>
+    Your selected book is: <span th:text="${booksMap[__${reqBook}__]?.name}">None</span>
+  </p>
+</body>
+</html>

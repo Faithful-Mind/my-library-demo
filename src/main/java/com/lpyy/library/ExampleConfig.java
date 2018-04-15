@@ -13,10 +13,9 @@ import java.util.Map;
  * Created by Faithful-Mind on 2018/3/26.
  */
 @Configuration
-@ComponentScan(basePackages = "com.lpyy.library.controller")
 public class ExampleConfig {
 
-    @Bean(name = "booksMap")
+    @Bean
     public Map<String, Book> booksMap() {
         Map<String, Book> booksMap = new HashMap<>();
         booksMap.put("hfPython", new Book("Head First Python", "O'Reilly", "9781449382674", Category.T, 0));
