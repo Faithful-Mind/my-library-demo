@@ -7,15 +7,31 @@
 <body>
   <h1>Result Page</h1>
   <hr />
-  <p th:with="reqBook=${param.reqBook[0]}">
+  <p  th:with="reqBook=${param.reqBook}">
+    <!--/* -->
     <div style="display: none" id="for-debugging">
+      [[${param.reqBook}]] <br />
+      [[${#vars.getVariable("booksMap")}]]
       <table>
-        <tr th:each="var : ${#vars}">
-          <td th:text="${var.key}"></td>
-          <td th:text="${var.value}"></td>
+        <tr th:each="var : ${#vars.getVariableNames()}">
+          <td th:text="${var}"></td>
+          <td th:text="${#vars.getVariable(var)}"></td>
+        </tr>
+        <!-- Adding these manually because they're considered special.
+             see https://github.com/thymeleaf/thymeleaf/blob/thymeleaf-3.0.3.RELEASE/src/main/java/org/thymeleaf/context/WebEngineContext.java#L199
+        -->
+        <tr>
+          <td>param</td>
+          <td th:text="${#vars.getVariable('param')}"></td>
+        </tr>
+        <tr>
+          <td>application</td>
+          <td th:text="${#vars.getVariable('application')}"></td>
         </tr>
       </table>
     </div>
+    [[${reqBook}]]
+    <!-- */-->
     Your selected book is: <span th:text="${booksMap[__${reqBook}__]?.name}">None</span>
   </p>
 </body>

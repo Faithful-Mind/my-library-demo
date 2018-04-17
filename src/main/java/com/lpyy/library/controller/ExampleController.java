@@ -22,7 +22,7 @@ public class ExampleController {
         this.booksMap = booksMap;
     }
 
-    @RequestMapping(value="/GetExampleBook.do")
+    @RequestMapping(value="/result")
     public String borrowBook(Model model) {
         model.addAttribute("booksMap", this.booksMap);
         return "result";

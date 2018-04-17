@@ -15,19 +15,20 @@
 
   <context:component-scan base-package="com.lpyy.library" />
 
-  <!--Using Thymeleaf-->
-  <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-    <property name="prefix" value="/WEB-INF/views/"/>
-    <property name="suffix" value=".html"/>
-    <property name="templateMode" value="HTML5"/>
-    <property name="cacheable" value="false"/>
-  </bean>
-  <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-    <property name="templateResolver" ref="templateResolver"/>
-  </bean>
-
+  <!-- using Thymeleaf View Resolver - implementation of Spring's ViewResolver interface -->
   <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-    <property name="templateEngine" ref="templateEngine"/>
+    <property name="templateEngine" ref="templateEngine" />
+    <property name="characterEncoding" value="UTF-8" />
+  </bean>
+  <!-- Thymeleaf Template Engine (Spring4-specific version) -->
+  <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+    <property name="templateResolver" ref="templateResolver" />
+  </bean>
+  <!-- Thymeleaf Template Resolver -->
+  <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+    <property name="prefix" value="/WEB-INF/views/" />
+    <property name="suffix" value=".html" />
+    <property name="templateMode" value="HTML" />
   </bean>
 
   <mvc:resources mapping="/resources/**" location="/resources/" />
@@ -37,6 +38,6 @@
   -->
 
   <!--Needed for static resources (html, css, js etc.) when DispatcherServlet's servlet-mapping is "/"-->
-  <mvc:default-servlet-handler/>
+  <mvc:default-servlet-handler />
 
 </beans>

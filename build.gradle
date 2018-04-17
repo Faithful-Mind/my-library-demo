@@ -24,7 +24,7 @@ repositories {
 
 ext {
     springVersion = '4.3.14.RELEASE'
-    thymeleafVersion = '2.1.6.RELEASE'
+    thymeleafVersion = '3.0.9.RELEASE'
 }
 
 dependencies {
